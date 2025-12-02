@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1764670116 source:i:\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+

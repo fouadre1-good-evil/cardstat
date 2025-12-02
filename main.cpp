@@ -17,7 +17,7 @@ int main()
 {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-
+    cout << "prova";
     cout << R"(
                 ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
                 │4        │   │A        │   │J        │   │10       │

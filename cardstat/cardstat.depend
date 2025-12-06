@@ -7,7 +7,7 @@
 	<io.h>
 	<fcntl.h>
 
-1764711953 source:c:\users\fouad\downloads\cardstat\cardstat\main.cpp
+1765032057 source:c:\users\fouad\downloads\cardstat\cardstat\main.cpp
 	<iostream>
 	<windows.h>
 	<ctime>
@@ -24,6 +24,14 @@
 	<fcntl.h>
 
 1765018974 source:c:\users\utente\documents\cardstat\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+
+1765033776 source:c:\users\micky\desktop\c++\scuola\cardstat\cardstat\main.cpp
 	<iostream>
 	<windows.h>
 	<ctime>

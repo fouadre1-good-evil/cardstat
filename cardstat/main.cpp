@@ -1,29 +1,41 @@
 #include <iostream>
-#include <windows.h>
-#include <ctime>
-#include <cstdlib>
+#include <windows.h> //Per system("cls") e per dare colori alle carte
+#include <ctime> //Per il random
+#include <cstdlib> //Per il random
 #include <io.h> // Per stampare le carte
 #include <fcntl.h> // Per stampare le carte
 
 using namespace std;
 
-
-void scelte(int &scelta, int &nEstrazioni);
-void random(int &seme,int &valore, int &scelta);
-void confronti (int &scelta, int &nEstrazioni,int &coppia);
-void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int semePrecedente);
-
+void menu ();                                                                                   //-------|
+void scelte(int &scelta, int &nEstrazioni);                                                     //       |
+void random(int &seme,int &valore, int &scelta);                                                //       |------> Le varie funzioni
+void confronti (int &scelta, int &nEstrazioni);                                                 //       |
+void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int semePrecedente); //-------|
+HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
     srand(time(NULL));
-    int scelta = 0;
-    int nEstrazioni = 0;
-    int coppia = 00;
-    scelte(scelta, nEstrazioni);
-    confronti (scelta ,nEstrazioni ,coppia);
+    system("color F0");
+    SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
+    cout << "HI" << endl;
+    SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
+    cout << "HELLO" << endl;
+    while(true){
+        int scelta = 0;
+        int nEstrazioni = 0;
+        menu();
+        scelte(scelta, nEstrazioni);
+        confronti (scelta ,nEstrazioni);
+    }
     return 0;
+}
+
+void menu ()
+{
+    cout <<R"()";
 }
 
 void scelte (int &scelta, int &nEstrazioni)
@@ -41,14 +53,15 @@ void scelte (int &scelta, int &nEstrazioni)
                 break;
             default:
                 cout <<"il valore inserito e' sbagliato riprovare"<<endl;
-                cout <<"inserire un qualunque numero per continuare"<<endl;
-                cin >>scelta;
+                Sleep(2000);
                 continue;
         }
         system ("cls");
         do {
             cout << "Inserisci il numero di estrazione" << endl;
             cin >> nEstrazioni;
+            Sleep(2000);
+            system("cls");
         } while (nEstrazioni <= 1);
         break;
     }
@@ -66,9 +79,9 @@ void random(int &seme,int &valore, int &scelta)
     }
 }
 
-void confronti (int &scelta, int &nEstrazioni,int &coppia)
+void confronti (int &scelta, int &nEstrazioni)
 {
-    int valore = 0, seme = 0, semePrecedente = 0, valorePrecedente = 0;
+    int valore = 0, seme = 0, semePrecedente = 0, valorePrecedente = 0 ,coppia = 0;
     random (semePrecedente, valorePrecedente, scelta);
     for (int i = 1; i<nEstrazioni; i++) {
         random (seme, valore, scelta); // 3 e 4 (valori) sono neri
@@ -76,6 +89,10 @@ void confronti (int &scelta, int &nEstrazioni,int &coppia)
         if (semePrecedente != seme && valorePrecedente == valore) {
             coppia++;
             }
+        cout <<endl;
+        cout <<"numero di coppie: "<<coppia<<endl;
+        Sleep(2000);
+        system("cls");
             semePrecedente = seme;
             valorePrecedente = valore;
         }
@@ -90,6 +107,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
                 case 8:
                     switch (semePrecedente){
                         case 1:
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │J        │
@@ -99,8 +117,10 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        J│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 2:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │J        │
@@ -110,6 +130,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        J│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 3:
                             cout << R"(
@@ -138,6 +159,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
                 case 9:
                     switch (semePrecedente){
                         case 1:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │Q        │
@@ -147,8 +169,10 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        Q│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 2:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │Q        │
@@ -158,6 +182,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        Q│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 3:
                             cout << R"(
@@ -186,6 +211,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
                 case 10:
                     switch (semePrecedente){
                         case 1:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │K        │
@@ -195,8 +221,10 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        K│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 2:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │K        │
@@ -206,6 +234,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        K│
 └─────────┘
                 )" << endl;
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 3:
                             cout << R"(
@@ -235,6 +264,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
                 }else{
                         switch (semePrecedente){
                             case 1:
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                                 cout << R"(
 ┌─────────┐
 │)"<<valorePrecedente<< R"(        │
@@ -244,8 +274,10 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        )"<<valorePrecedente<< R"(│
 └─────────┘
                         )";
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                             break;
                             case 2:
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                                 cout << R"(
 ┌─────────┐
 │)"<<valorePrecedente<< R"(        │
@@ -255,6 +287,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        )"<<valorePrecedente<< R"(│
 └─────────┘
                         )";
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                             break;
                             case 3:
                                 cout << R"(
@@ -285,6 +318,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
                 case 8:
                     switch (seme){
                         case 1:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │J        │
@@ -294,8 +328,10 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        J│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 2:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │J        │
@@ -305,6 +341,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        J│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 3:
                             cout << R"(
@@ -333,6 +370,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
                 case 9:
                     switch (seme){
                         case 1:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │Q        │
@@ -342,8 +380,10 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        Q│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 2:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │Q        │
@@ -353,6 +393,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        Q│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 3:
                             cout << R"(
@@ -381,6 +422,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
                     case 10:
                         switch (seme){
                         case 1:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │K        │
@@ -390,8 +432,10 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        K│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 2:
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                             cout << R"(
 ┌─────────┐
 │K        │
@@ -401,6 +445,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        K│
 └─────────┘
                 )";
+                        SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                         break;
                         case 3:
                             cout << R"(
@@ -429,6 +474,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
             }else{
                 switch (seme){
                             case 1:
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                                 cout << R"(
 ┌─────────┐
 │)"<<valore<< R"(        │
@@ -438,8 +484,10 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        )"<<valore<< R"(│
 └─────────┘
                         )";
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                             break;
                             case 2:
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | FOREGROUND_RED | BACKGROUND_INTENSITY);
                                 cout << R"(
 ┌─────────┐
 │)"<<valore<< R"(        │
@@ -449,6 +497,7 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 │        )"<<valore<< R"(│
 └─────────┘
                         )";
+                            SetConsoleTextAttribute(h, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
                             break;
                             case 3:
                                 cout << R"(
@@ -477,3 +526,4 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
         }else{
     }
 }
+

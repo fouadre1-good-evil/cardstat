@@ -61,7 +61,6 @@ void random(int &seme,int &valore, int &scelta)
         valore = rand () %10+1;
         seme = rand () %4+1;
     } else if (scelta == 2) {
-        srand(time(NULL));
         valore = rand () %13+1;
         seme = rand () %4+1;
     }
@@ -70,24 +69,23 @@ void random(int &seme,int &valore, int &scelta)
 void confronti (int &scelta, int &nEstrazioni,int &coppia)
 {
     int valore = 0, seme = 0, semePrecedente = 0, valorePrecedente = 0;
-    random (seme, valore, scelta);
-    semePrecedente=seme;
-    valorePrecedente=valore;
-
-    for (int i = 0; i<nEstrazioni; i++) {
+    random (semePrecedente, valorePrecedente, scelta);
+    for (int i = 1; i<nEstrazioni; i++) {
         random (seme, valore, scelta); // 3 e 4 (valori) sono neri
         disegna_carte(scelta ,valore ,valorePrecedente ,seme ,semePrecedente);
         if (semePrecedente != seme && valorePrecedente == valore) {
             coppia++;
             }
+            semePrecedente = seme;
+            valorePrecedente = valore;
         }
-
 }
 
 void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int semePrecedente)
 {
+    bool carta_disegnata = true;
     if (scelta == 1){
-            if (valore >=8){
+            if (valorePrecedente >=8){
                 switch (valorePrecedente){
                 case 8:
                     switch (semePrecedente){
@@ -231,54 +229,58 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 └─────────┘
                 )";
                         break;
+                        }
+                    break;
                     }
-                }
-                switch (semePrecedente){
-                    case 1:
-                        cout << R"(
+                }else{
+                        switch (semePrecedente){
+                            case 1:
+                                cout << R"(
 ┌─────────┐
-|)"<<valorePrecedente<< R"(        │
+│)"<<valorePrecedente<< R"(        │
 │         │
 │    ♥    │
 │         │
 │        )"<<valorePrecedente<< R"(│
 └─────────┘
-                )";
-                    break;
-                    case 2:
-                        cout << R"(
+                        )";
+                            break;
+                            case 2:
+                                cout << R"(
 ┌─────────┐
-|)"<<valorePrecedente<< R"(        │
+│)"<<valorePrecedente<< R"(        │
 │         │
 │    ♦    │
 │         │
 │        )"<<valorePrecedente<< R"(│
 └─────────┘
-                )";
-                    break;
-                    case 3:
-                        cout << R"(
+                        )";
+                            break;
+                            case 3:
+                                cout << R"(
 ┌─────────┐
-|)"<<valorePrecedente<< R"(        │
+│)"<<valorePrecedente<< R"(        │
 │         │
 │    ♣    │
 │         │
 │        )"<<valorePrecedente<< R"(│
 └─────────┘
-                )";
-                    break;
-                    case 4:
-                        cout << R"(
+                        )";
+                            break;
+                            case 4:
+                                cout << R"(
 ┌─────────┐
-|)"<<valorePrecedente<< R"(        │
+│)"<<valorePrecedente<< R"(        │
 │         │
 │    ♠    │
 │         │
 │        )"<<valorePrecedente<< R"(│
 └─────────┘
-                )";
-                    break;
-                }
+                        )";
+                            break;
+                    }
+            }
+            if (valore>=8){
                 switch (valore){
                 case 8:
                     switch (seme){
@@ -424,54 +426,45 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
                         break;
                     }
                 }
-            }
-            cout << R"(
-
-
-
-
-
-
-
-                )";
+            }else{
                 switch (seme){
-                    case 1:
-                        cout << R"(
+                            case 1:
+                                cout << R"(
 ┌─────────┐
-|)"<<valore<< R"(        │
+│)"<<valore<< R"(        │
 │         │
 │    ♥    │
 │         │
 │        )"<<valore<< R"(│
 └─────────┘
-                )";
-                    break;
-                    case 2:
-                        cout << R"(
+                        )";
+                            break;
+                            case 2:
+                                cout << R"(
 ┌─────────┐
-|)"<<valore<< R"(        │
+│)"<<valore<< R"(        │
 │         │
 │    ♦    │
 │         │
 │        )"<<valore<< R"(│
 └─────────┘
-                )";
-                    break;
-                    case 3:
-                        cout << R"(
+                        )";
+                            break;
+                            case 3:
+                                cout << R"(
 ┌─────────┐
-|)"<<valore<< R"(        │
+│)"<<valore<< R"(        │
 │         │
 │    ♣    │
 │         │
 │        )"<<valore<< R"(│
 └─────────┘
-                )";
-                    break;
-                    case 4:
+                        )";
+                            break;
+                            case 4:
                         cout << R"(
 ┌─────────┐
-|)"<<valore<< R"(        │
+│)"<<valore<< R"(        │
 │         │
 │    ♠    │
 │         │
@@ -479,8 +472,8 @@ void disegna_carte(int scelta ,int valore ,int valorePrecedente ,int seme ,int s
 └─────────┘
                 )";
                     break;
+                }
             }
         }else{
     }
 }
-

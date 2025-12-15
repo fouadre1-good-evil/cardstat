@@ -1,0 +1,57 @@
+# depslib dependency file v1.0
+1764670116 source:i:\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+
+1765044777 source:c:\users\fouad\downloads\cardstat\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+
+1765018974 source:c:\users\utente\documents\cardstat\cardstat\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+
+1765018974 source:c:\users\utente\documents\cardstat\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+
+1765033776 source:c:\users\micky\desktop\c++\scuola\cardstat\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+
+1765274397 source:c:\users\utente\documents\cardstat-master\cardstat-master\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+
+1765633582 source:d:\cardstat\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+	<cstdlib>
+	<io.h>
+	<fcntl.h>
+
